@@ -4,7 +4,10 @@ import styled from "styled-components";
 const DownloadButton = ({ onClicked }) => {
   return (
     <StyledWrapper>
-      <button onClick={onClicked} className="button">
+      <button
+        onClick={onClicked}
+        className="button px-2 md:px-4 py-2 text-xs md:text-lg"
+      >
         <svg
           strokeLinejoin="round"
           strokeLinecap="round"
@@ -36,13 +39,10 @@ const StyledWrapper = styled.div`
     display: flex;
     align-items: center;
     gap: 0.35em;
-    padding: 0.75em 1em;
-    padding-right: 1.25em;
     color: #fff;
     border: 1px solid transparent;
-    font-weight: 700;
     border-radius: 2em;
-    font-size: 1rem;
+
     box-shadow: 0 0.7em 1.5em -0.5em hsla(249, 62%, 51%, 0.745);
     transition: transform 0.3s;
 

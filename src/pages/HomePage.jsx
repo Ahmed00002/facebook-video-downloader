@@ -5,8 +5,11 @@ import Features from "../components/Features";
 import { useNavigate } from "react-router";
 import HowToDownload from "../components/HowToDownload";
 import Faq from "../components/Faq";
+import { useState } from "react";
+import Loader from "../components/shared/Spinner";
 
 const HomePage = () => {
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   // Function to handle the video download
   const getVideo = () => {
@@ -20,10 +23,11 @@ const HomePage = () => {
       });
       return;
     } else {
+      setLoading(true);
       axios
-        .get(`http://localhost:3000/fb-download?url=${url}`)
+        .get(`https://fb-downloader-server.vercel.app/fb-download?url=${url}`)
         .then((response) => {
-          console.log(response);
+          setLoading(false);
           navigate("/download", {
             state: {
               videoUrls: [
@@ -51,8 +55,8 @@ const HomePage = () => {
   };
   return (
     <>
-      <div className="flex flex-col max-w-[1440px] px-20 md:px-20 lg:px-16 bg-gray-100 mx-auto">
-        <Downloader getVideo={getVideo} />
+      <div className="flex flex-col max-w-[1440px] px-4 md:px-8 lg:px-16 bg-gray-100 mx-auto">
+        <Downloader getVideo={getVideo} isLoading={loading} />
 
         {/* features */}
         <Features />
