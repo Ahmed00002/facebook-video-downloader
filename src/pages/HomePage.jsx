@@ -6,51 +6,66 @@ import { useNavigate } from "react-router";
 import HowToDownload from "../components/HowToDownload";
 import Faq from "../components/Faq";
 import { useState } from "react";
-import Loader from "../components/shared/Spinner";
 
 const HomePage = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const regex = /facebook\.com/;
   // Function to handle the video download
   const getVideo = () => {
     const url = document.querySelector("input").value;
-    if (!url) {
+    if (regex.test(url)) {
+      if (!url) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Please enter a valid Facebook video URL.",
+          confirmButtonText: "OK",
+        });
+        return;
+      } else {
+        setLoading(true);
+        axios
+          .get(`https://fb-downloader-server.vercel.app/fb-download?url=${url}`)
+          .then((response) => {
+            setLoading(false);
+            navigate("/download", {
+              state: {
+                videoUrls: [
+                  {
+                    title: "Download SD",
+                    url: response.data.sd,
+                  },
+                  {
+                    title: "Download HD",
+                    url: response.data.hd,
+                  },
+                ],
+                thumbnail: {
+                  title: response.data.title,
+                  url: response.data.thumbnail,
+                  duration: response.data.duration_ms,
+                },
+              },
+            });
+          })
+          .catch((error) => {
+            setLoading(false);
+            Swal.fire({
+              icon: "error",
+              title: "Failed to Fetch Video",
+              text: "An error occurred while trying to fetch the video. Please try again later.",
+              confirmButtonText: "OK",
+            });
+          });
+      }
+    } else {
       Swal.fire({
         icon: "error",
-        title: "Oops...",
-        text: "Please enter a valid Facebook video URL.",
+        title: "Invalid URL",
+        text: "The provided URL is not a valid Facebook link. Please enter a valid Facebook video URL.",
         confirmButtonText: "OK",
       });
-      return;
-    } else {
-      setLoading(true);
-      axios
-        .get(`https://fb-downloader-server.vercel.app/fb-download?url=${url}`)
-        .then((response) => {
-          setLoading(false);
-          navigate("/download", {
-            state: {
-              videoUrls: [
-                {
-                  title: "Download SD",
-                  url: response.data.sd,
-                },
-                {
-                  title: "Download HD",
-                  url: response.data.hd,
-                },
-              ],
-              thumbnail: {
-                title: response.data.title,
-                url: response.data.thumbnail,
-                duration: response.data.duration_ms,
-              },
-            },
-          });
-        })
-        .catch((error) => {
-          console.error("Error fetching video:", error);
-        });
     }
   };
   return (

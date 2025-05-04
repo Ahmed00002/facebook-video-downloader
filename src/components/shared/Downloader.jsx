@@ -2,10 +2,10 @@ import React, { useRef } from "react";
 import DownloadButton from "../../ui/DownloadButton";
 import { MdContentPaste } from "react-icons/md";
 import Loader from "./Spinner";
+import Swal from "sweetalert2";
 
 const Downloader = ({ getVideo, isLoading }) => {
   const inputRef = useRef();
-  console.log(inputRef);
 
   const handlePaste = () => {
     navigator.clipboard
@@ -13,8 +13,12 @@ const Downloader = ({ getVideo, isLoading }) => {
       .then((text) => {
         inputRef.current.value = text;
       })
-      .catch((err) => {
-        console.error("Error pasting text: ", err);
+      .catch(() => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Failed to paste text from clipboard!",
+        });
       });
   };
   return (
@@ -22,8 +26,10 @@ const Downloader = ({ getVideo, isLoading }) => {
       <h1 className="text-3xl md:text-4xl lg:text-5xl mb-4 font-medium w-full text-center">
         Download <span className="text-purple-600">Facebook</span> Videos
       </h1>
-      <p className="mb-10 text-lg">Download videos SD and HD videos free</p>
-      <div className="flex items-center justify-center w-full lg:max-w-8/12 gap-4">
+      <p className="mb-10 text-md md:text-lg text-center">
+        Download videos SD and HD videos free
+      </p>
+      <div className="flex items-center justify-center w-full lg:max-w-8/12 gap-2 md:gap-4">
         {/* container */}
         <div className="relative w-full text-xs md:text-lg">
           {/* input field for fb url */}

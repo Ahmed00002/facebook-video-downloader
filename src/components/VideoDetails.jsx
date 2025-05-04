@@ -4,7 +4,6 @@ import { Link, useLocation } from "react-router";
 const VideoDetails = () => {
   const location = useLocation();
   const { videoUrls, thumbnail } = location.state || {};
-  console.log(thumbnail);
 
   const minutes = Math.floor(thumbnail.duration / 60000); // 1 মিনিট = 60000 মিলি সেকেন্ড
   const seconds = Math.floor((thumbnail.duration % 60000) / 1000); // বাকি মিলি সেকেন্ড থেকে সেকেন্ড বের করা
