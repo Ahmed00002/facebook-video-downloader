@@ -49,7 +49,7 @@ const HomePage = () => {
               },
             });
           })
-          .catch((error) => {
+          .catch(() => {
             setLoading(false);
             Swal.fire({
               icon: "error",
