@@ -6,6 +6,7 @@ import { useNavigate } from "react-router";
 import HowToDownload from "../components/HowToDownload";
 import Faq from "../components/Faq";
 import { useState } from "react";
+import axiosSecure from "../hooks/axiosSecure";
 
 const HomePage = () => {
   const [loading, setLoading] = useState(false);
@@ -25,10 +26,11 @@ const HomePage = () => {
         return;
       } else {
         setLoading(true);
-        axios
-          .get(`https://fb-downloader-server.vercel.app/fb-download?url=${url}`)
+        axiosSecure
+          .get(`fb-download?url=${url}`)
           .then((response) => {
             setLoading(false);
+            console.log(response);
             navigate("/download", {
               state: {
                 videoUrls: [
