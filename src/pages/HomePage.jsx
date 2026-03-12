@@ -1,4 +1,3 @@
-import axios from "axios";
 import Downloader from "../components/shared/Downloader";
 import Swal from "sweetalert2";
 import Features from "../components/Features";
@@ -12,10 +11,12 @@ const HomePage = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const regex = /facebook\.com/;
+
   // Function to handle the video download
   const getVideo = () => {
     const url = document.querySelector("input").value;
     if (regex.test(url)) {
+      // Valid Facebook URL, proceed with fetching video details
       if (!url) {
         Swal.fire({
           icon: "error",
@@ -27,7 +28,7 @@ const HomePage = () => {
       } else {
         setLoading(true);
         axiosSecure
-          .get(`fb-download?url=${url}`)
+          .get(`facebook/video?url=${url}`)
           .then((response) => {
             setLoading(false);
             console.log(response);

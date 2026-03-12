@@ -16,8 +16,8 @@ const VideoDetails = () => {
     const encodedVideoUrl = encodeURIComponent(videoUrl);
     const safeFilename = encodeURIComponent(title);
 
-    const backendUrl = `http://fb-downloader-server.vercel.app/download-video?url=${encodedVideoUrl}&title=${safeFilename}`;
-    // const backendUrl1 = `http://localhost:3000/download-video?url=${encodedVideoUrl}&title=${safeFilename}`;
+    const backendUrl = `https://fb-downloader-server.vercel.app/download-video?url=${encodedVideoUrl}&title=${safeFilename}`;
+    // const backendUrl1 = `http://localhost:3000/facebook/download?url=${encodedVideoUrl}&title=${safeFilename}`;
 
     //Trigger the browser download
     window.location.href = backendUrl;
@@ -59,7 +59,10 @@ const VideoDetails = () => {
               <button
                 key={index}
                 onClick={() =>
-                  downloadVideo(video.url, `video_${video?.quality}`)
+                  downloadVideo(
+                    video.url,
+                    `video_${video?.title.replace(/[^a-z0-9]/gi, "_").toLowerCase()}`,
+                  )
                 }
                 disabled={downloading}
                 className={`p-2 rounded mt-4 inline-block cursor-pointer transition duration-300 ease-in-out text-center text-white
