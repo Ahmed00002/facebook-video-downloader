@@ -10,71 +10,108 @@ import axiosSecure from "../hooks/axiosSecure";
 const HomePage = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const regex = /facebook\.com/;
+  // const regex = /(facebook\.com|fb\.watch|tiktok\.com|youtube\.com|youtu\.be)/;
+  const facebookRegex = /facebook\.com/;
+  const tiktokRegex = /tiktok\.com/;
+  const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+$/;
 
+  const [platform, setPlatform] = useState("facebook");
+  const showError = () => {
+    Swal.fire({
+      icon: "error",
+      title: "Invalid URL",
+      text: `The provided URL is not a valid ${platform.toUpperCase()} link.`,
+    });
+  };
   // Function to handle the video download
-  const getVideo = () => {
-    const url = document.querySelector("input").value;
-    if (regex.test(url)) {
+  const getVideo = (e) => {
+    e.preventDefault();
+    const url = document.querySelector("#pastedLink").value;
+    console.log(url);
+
+    if (!url) {
+      showError();
+      return;
+    }
+
+    if (platform === "facebook" && facebookRegex.test(url)) {
       // Valid Facebook URL, proceed with fetching video details
-      if (!url) {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Please enter a valid Facebook video URL.",
-          confirmButtonText: "OK",
-        });
-        return;
-      } else {
-        setLoading(true);
-        axiosSecure
-          .get(`facebook/video?url=${url}`)
-          .then((response) => {
-            setLoading(false);
-            console.log(response);
-            navigate("/download", {
-              state: {
-                videoUrls: [
-                  {
-                    title: "Download SD",
-                    url: response.data.sd,
-                  },
-                  {
-                    title: "Download HD",
-                    url: response.data.hd,
-                  },
-                ],
-                thumbnail: {
-                  title: response.data.title,
-                  url: response.data.thumbnail,
-                  duration: response.data.duration_ms,
+      setLoading(true);
+      axiosSecure
+        .get(`facebook/video?url=${url}`)
+        .then((response) => {
+          setLoading(false);
+          console.log(response);
+          navigate("/download", {
+            state: {
+              platform: "facebook",
+              videoUrls: [
+                {
+                  title: "Download SD",
+                  url: response.data.sd,
                 },
+                {
+                  title: "Download HD",
+                  url: response.data.hd,
+                },
+              ],
+              thumbnail: {
+                title: response.data.title,
+                url: response.data.thumbnail,
+                duration: response.data.duration_ms,
               },
-            });
-          })
-          .catch(() => {
-            setLoading(false);
-            Swal.fire({
-              icon: "error",
-              title: "Failed to Fetch Video",
-              text: "An error occurred while trying to fetch the video. Please try again later.",
-              confirmButtonText: "OK",
-            });
+            },
           });
-      }
-    } else {
+        })
+        .catch(() => {
+          setLoading(false);
+          Swal.fire({
+            icon: "error",
+            title: "Failed to Fetch Video",
+            text: "An error occurred while trying to fetch the video. Please try again later.",
+            confirmButtonText: "OK",
+          });
+        });
+    } else if (platform === "tiktok" && tiktokRegex.test(url)) {
+      setLoading(true);
+      axiosSecure.get(`tiktok/video?url=${url}`).then((response) => {
+        console.log(response.data?.result?.video?.playAddr[0]);
+        navigate("/download", {
+          state: {
+            platform: "tiktok",
+            videoUrls: [
+              {
+                title: "Download Video",
+                url: response.data?.result?.video?.playAddr[0],
+              },
+            ],
+            likes: response.data?.result?.statistics?.likeCount,
+            comments: response.data?.result?.statistics?.commentCount,
+            shares: response.data?.result?.statistics?.shareCount,
+            author: response.data?.result?.author,
+          },
+        });
+      });
+    } else if (platform === "youtube" && youtubeRegex.test(url)) {
       Swal.fire({
-        icon: "error",
-        title: "Invalid URL",
-        text: "The provided URL is not a valid Facebook link. Please enter a valid Facebook video URL.",
+        icon: "info",
+        title: "YouTube Download Coming Soon",
+        text: "We're working hard to add YouTube video downloading support. Stay tuned for updates!",
         confirmButtonText: "OK",
       });
+    } else {
+      showError();
     }
   };
+
   return (
     <>
       <div className="flex flex-col max-w-[1440px] px-4 md:px-8 lg:px-16 bg-gray-100 mx-auto">
-        <Downloader getVideo={getVideo} isLoading={loading} />
+        <Downloader
+          getVideo={getVideo}
+          isLoading={loading}
+          platform={{ platform, setPlatform }}
+        />
 
         {/* features */}
         <Features />

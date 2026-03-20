@@ -38,7 +38,7 @@ const Features = () => {
     },
   ];
   return (
-    <div className="mb-10">
+    <div className="my-10">
       <SectionTitle
         title={"Why you should use FDN Pro"}
         subtitle={
