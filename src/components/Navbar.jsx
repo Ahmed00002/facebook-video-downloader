@@ -27,10 +27,12 @@ const Navbar = () => {
 
         {/* Actions Area */}
         <div>
-          <button className="flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 text-sm md:text-base font-semibold text-slate-700 bg-slate-100 border border-slate-200 hover:bg-indigo-600 hover:text-white hover:border-transparent rounded-xl transition-all duration-300 ease-out shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 cursor-pointer">
-            <span className="hidden sm:inline">FB Downloader</span>
-            <span className="sm:hidden">Download</span>
-          </button>
+          <Link
+            to="/history"
+            className="flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 text-sm md:text-base font-semibold text-slate-700 bg-slate-100 border border-slate-200 hover:bg-indigo-600 hover:text-white hover:border-transparent rounded-xl transition-all duration-300 ease-out shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+          >
+            <span className="">My History</span>
+          </Link>
         </div>
       </div>
     </nav>

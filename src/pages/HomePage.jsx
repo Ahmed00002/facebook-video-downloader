@@ -23,6 +23,32 @@ const HomePage = () => {
       text: `The provided URL is not a valid ${platform.toUpperCase()} link.`,
     });
   };
+
+  // utility function to save video details to recent activities in localStorage
+  const saveToRecentActivities = (videoData, platform) => {
+    const existingData =
+      JSON.parse(localStorage.getItem("fdn_recent_activities")) || [];
+
+    const newActivity = {
+      id: Date.now(),
+      title: videoData.title || "Untitled Video",
+      thumbnail: videoData.thumbnail?.url || videoData.thumbnail,
+      platform: platform,
+      timestamp: new Date().toISOString(),
+
+      fullStateData: {
+        ...videoData,
+        platform: platform,
+      },
+    };
+
+    const updatedData = [newActivity, ...existingData];
+
+    const cappedData = updatedData.slice(0, 12);
+
+    localStorage.setItem("fdn_recent_activities", JSON.stringify(cappedData));
+  };
+
   // Function to handle the video download
   const getVideo = (e) => {
     e.preventDefault();
@@ -41,7 +67,28 @@ const HomePage = () => {
         .get(`facebook/video?url=${url}`)
         .then((response) => {
           setLoading(false);
-          console.log(response);
+          // data for recent activities
+          saveToRecentActivities(
+            {
+              platform: "facebook",
+              videoUrls: [
+                {
+                  title: "Download SD",
+                  url: response.data.sd,
+                },
+                {
+                  title: "Download HD",
+                  url: response.data.hd,
+                },
+              ],
+              thumbnail: {
+                title: response.data.title,
+                url: response.data.thumbnail,
+                duration: response.data.duration_ms,
+              },
+            },
+            "facebook",
+          );
           navigate("/download", {
             state: {
               platform: "facebook",
@@ -75,7 +122,23 @@ const HomePage = () => {
     } else if (platform === "tiktok" && tiktokRegex.test(url)) {
       setLoading(true);
       axiosSecure.get(`tiktok/video?url=${url}`).then((response) => {
-        console.log(response.data?.result?.video?.playAddr[0]);
+        // data for recent activities
+        saveToRecentActivities(
+          {
+            platform: "tiktok",
+            videoUrls: [
+              {
+                title: "Download Video",
+                url: response.data?.result?.video?.playAddr[0],
+              },
+            ],
+            likes: response.data?.result?.statistics?.likeCount,
+            comments: response.data?.result?.statistics?.commentCount,
+            shares: response.data?.result?.statistics?.shareCount,
+            author: response.data?.result?.author,
+          },
+          "tiktok",
+        );
         navigate("/download", {
           state: {
             platform: "tiktok",

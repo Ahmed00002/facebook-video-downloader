@@ -6,6 +6,7 @@ import MainLayout from "./layouts/MainLayout.jsx";
 import { BrowserRouter, Route, Routes } from "react-router";
 import HomePage from "./pages/homepage.jsx";
 import VideoDetails from "./components/VideoDetails.jsx";
+import RecentActivities from "./pages/RecentActivities.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -13,10 +14,11 @@ createRoot(document.getElementById("root")).render(
       <Routes>
         <Route element={<MainLayout />}>
           <Route path="/" element={<HomePage />} />
+          <Route path="/history" element={<RecentActivities />} />
           <Route path="/download" element={<VideoDetails />} />
         </Route>
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
     </BrowserRouter>
-  </StrictMode>
+  </StrictMode>,
 );

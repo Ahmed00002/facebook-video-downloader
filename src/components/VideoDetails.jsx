@@ -13,6 +13,7 @@ import { Link, useLocation } from "react-router";
 
 const VideoDetails = () => {
   const location = useLocation();
+  console.log("Received video details:", location.state);
   const {
     videoUrls,
     thumbnail,
@@ -46,11 +47,11 @@ const VideoDetails = () => {
     let downloadEndpoint = "";
 
     if (currentPlatform === "facebook") {
-      downloadEndpoint = `http://localhost:3000/facebook/download?url=${encodedVideoUrl}&title=${safeFilename}`;
+      downloadEndpoint = `https://fb-downloader-server.vercel.app/facebook/download?url=${encodedVideoUrl}&title=${safeFilename}`;
     } else if (currentPlatform === "tiktok") {
-      downloadEndpoint = `http://localhost:3000/tiktok/download?url=${encodedVideoUrl}&title=${safeFilename}`;
+      downloadEndpoint = `https://fb-downloader-server.vercel.app/tiktok/download?url=${encodedVideoUrl}&title=${safeFilename}`;
     } else if (currentPlatform === "youtube") {
-      downloadEndpoint = `http://localhost:3000/youtube/download?url=${encodedVideoUrl}&title=${safeFilename}`;
+      downloadEndpoint = `https://fb-downloader-server.vercel.app/youtube/download?url=${encodedVideoUrl}&title=${safeFilename}`;
     }
 
     if (downloadEndpoint) {
