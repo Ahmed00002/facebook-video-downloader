@@ -49,7 +49,7 @@ const HowToDownload = () => {
         isTop={true}
       />
 
-      <div className="max-w-5xl mx-auto px-4 md:px-8 relative mt-4 md:mt-8">
+      <div className=" px-4 md:px-8 lg:px-16 relative mt-4 md:mt-8">
         {/* Decorative connecting line for desktop screens */}
         <div className="hidden md:block absolute top-12 left-20 right-20 h-0.5 bg-gradient-to-r from-slate-100 via-indigo-100 to-slate-100 -z-10"></div>
 

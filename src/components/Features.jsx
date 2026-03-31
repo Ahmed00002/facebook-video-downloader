@@ -46,7 +46,7 @@ const Features = () => {
         }
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 ">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 px-4 md:px-8 lg:px-16">
         {features.map((feature, index) => {
           return <FeaturesCard key={index} feature={feature} />;
         })}
