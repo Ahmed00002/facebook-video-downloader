@@ -5,14 +5,14 @@ import MainLayout from "./layouts/MainLayout.jsx";
 import { BrowserRouter, Route, Routes } from "react-router";
 import VideoDetails from "./components/VideoDetails.jsx";
 import RecentActivities from "./pages/RecentActivities.jsx";
-import HomePage from "./pages/homepage.jsx";
+import HomePage from "./pages/HomePage.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
         <Route element={<MainLayout />}>
-          <Route path="/" element={<HomePage />} />
+          <Route index element={<HomePage />} />
           <Route path="/history" element={<RecentActivities />} />
           <Route path="/download" element={<VideoDetails />} />
         </Route>

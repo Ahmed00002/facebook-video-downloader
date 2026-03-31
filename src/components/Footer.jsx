@@ -17,7 +17,7 @@ const Footer = () => {
                 <BiCloudDownload className="text-lg" />
               </div>
               <h2 className="text-xl font-extrabold text-slate-800 tracking-tight flex items-start">
-                FDN
+                SnapDL
                 <sup className="ml-1 mt-1.5 text-[9px] font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-600 uppercase tracking-widest">
                   Pro
                 </sup>
@@ -49,7 +49,7 @@ const Footer = () => {
 
         {/* Bottom Section: Copyright & Developer Credit */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-6 border-t border-slate-100 text-sm font-medium text-slate-400">
-          <p>&copy; {currentYear} FDN Pro. All rights reserved.</p>
+          <p>&copy; {currentYear} SnapDL Pro. All rights reserved.</p>
 
           <p className="flex items-center gap-1.5">
             Developed with{" "}

@@ -13,7 +13,7 @@ const RecentActivities = () => {
 
   // Load data from localStorage when the page mounts
   useEffect(() => {
-    const storedData = localStorage.getItem("fdn_recent_activities");
+    const storedData = localStorage.getItem("SnapDL_recent_activities");
     if (storedData) {
       setActivities(JSON.parse(storedData));
     }
@@ -24,7 +24,7 @@ const RecentActivities = () => {
     if (
       window.confirm("Are you sure you want to clear your recent activities?")
     ) {
-      localStorage.removeItem("fdn_recent_activities");
+      localStorage.removeItem("SnapDL_recent_activities");
       setActivities([]);
     }
   };

@@ -34,15 +34,15 @@ const Features = () => {
       ),
       title: "Free",
       subtitle:
-        "FDN Pro FB Downloader - It's always be free. In future We will only place some ads to support our development.",
+        "SnapDL Pro FB Downloader - It's always be free. In future We will only place some ads to support our development.",
     },
   ];
   return (
     <div className="my-10">
       <SectionTitle
-        title={"Why you should use FDN Pro"}
+        title={"Why you should use SnapDL Pro"}
         subtitle={
-          "FDN Pro is the best Facebook video downloader to help you high quality Facebook video download: Full HD and SD. Download Facebook video to your phone, PC, or tablet with highest quality. Use our FB video downloader with your browser. No need to install any software. Support both Android, and iOS."
+          "SnapDL Pro is the best Facebook video downloader to help you high quality Facebook video download: Full HD and SD. Download Facebook video to your phone, PC, or tablet with highest quality. Use our FB video downloader with your browser. No need to install any software. Support both Android, and iOS."
         }
       />
 

@@ -10,7 +10,6 @@ import axiosSecure from "../hooks/axiosSecure";
 const HomePage = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  // const regex = /(facebook\.com|fb\.watch|tiktok\.com|youtube\.com|youtu\.be)/;
   const facebookRegex = /facebook\.com/;
   const tiktokRegex = /tiktok\.com/;
   const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+$/;
@@ -27,7 +26,7 @@ const HomePage = () => {
   // utility function to save video details to recent activities in localStorage
   const saveToRecentActivities = (videoData, platform) => {
     const existingData =
-      JSON.parse(localStorage.getItem("fdn_recent_activities")) || [];
+      JSON.parse(localStorage.getItem("SnapDL_recent_activities")) || [];
 
     const newActivity = {
       id: Date.now(),
@@ -46,7 +45,10 @@ const HomePage = () => {
 
     const cappedData = updatedData.slice(0, 12);
 
-    localStorage.setItem("fdn_recent_activities", JSON.stringify(cappedData));
+    localStorage.setItem(
+      "SnapDL_recent_activities",
+      JSON.stringify(cappedData),
+    );
   };
 
   // Function to handle the video download
@@ -169,7 +171,7 @@ const HomePage = () => {
 
   return (
     <>
-      <div className="flex flex-col max-w-[1440px] px-4 md:px-8 lg:px-16 bg-gray-100 mx-auto">
+      <div className="flex flex-col max-w-360 bg-gray-100 mx-auto">
         <Downloader
           getVideo={getVideo}
           isLoading={loading}

@@ -18,7 +18,7 @@ const Navbar = () => {
 
           {/* Text Logo */}
           <h1 className="text-2xl md:text-3xl font-extrabold text-slate-800 tracking-tight flex items-start">
-            FDN
+            SnapDL
             <sup className="ml-1 mt-1.5 text-[10px] md:text-xs font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-600 uppercase tracking-widest">
               Pro
             </sup>

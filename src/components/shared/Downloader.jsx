@@ -36,7 +36,7 @@ const Downloader = ({ getVideo, isLoading, platform }) => {
       <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
       <div className="absolute top-[10%] right-[-5%] w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
 
-      <div className="w-full max-w-4xl mx-auto flex flex-col items-center relative z-10">
+      <div className="w-full max-w-360 mx-auto flex flex-col items-center relative z-10">
         {/* Platform Toggle */}
         <div className="mb-12">
           <PlatformToggle

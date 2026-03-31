@@ -5,14 +5,14 @@ import SectionTitle from "./shared/SectionTitle";
 const Faq = () => {
   const faqData = [
     {
-      title: "Why use FDN Pro to download videos?",
+      title: "Why use SnapDL Pro to download videos?",
       description:
-        "FDN Pro is the fastest and most reliable tool for downloading Facebook, TikTok, and YouTube videos with just a few clicks. No login is required, and it works perfectly across all devices. Whether you’re on mobile or desktop, you can instantly download videos in HD quality — completely free. There's no need to install any app or extension!",
+        "SnapDL Pro is the fastest and most reliable tool for downloading Facebook, TikTok, and YouTube videos with just a few clicks. No login is required, and it works perfectly across all devices. Whether you’re on mobile or desktop, you can instantly download videos in HD quality — completely free. There's no need to install any app or extension!",
     },
     {
       title: "How to download videos to your mobile phone or computer?",
       description:
-        "You can easily download videos by copying the video’s link, pasting it into the FDN Pro input box, and clicking the download button. It works seamlessly on both mobile browsers and desktop computers.",
+        "You can easily download videos by copying the video’s link, pasting it into the SnapDL Pro input box, and clicking the download button. It works seamlessly on both mobile browsers and desktop computers.",
     },
     {
       title: "Is downloading these videos legal?",
@@ -22,17 +22,17 @@ const Faq = () => {
     {
       title: "How to download videos to Android?",
       description:
-        "Open your social media app, copy the video link, go to FDN Pro on your mobile browser (like Chrome), paste the link, and tap the download button. The video will automatically be saved to your device's Downloads folder.",
+        "Open your social media app, copy the video link, go to SnapDL Pro on your mobile browser (like Chrome), paste the link, and tap the download button. The video will automatically be saved to your device's Downloads folder.",
     },
     {
       title: "How to download videos to your iPhone (iOS)?",
       description:
-        "Copy the video link from your app, visit FDN Pro using Safari or Chrome, paste the link, and press download. Once the file downloads, tap the downloads icon in Safari, open the video, and select “Save Video” to move it to your Camera Roll.",
+        "Copy the video link from your app, visit SnapDL Pro using Safari or Chrome, paste the link, and press download. Once the file downloads, tap the downloads icon in Safari, open the video, and select “Save Video” to move it to your Camera Roll.",
     },
     {
-      title: "Is FDN Pro safe to use?",
+      title: "Is SnapDL Pro safe to use?",
       description:
-        "Yes, FDN Pro is completely safe and secure. We don’t store any user data, we never ask for your login credentials, and our tool provides a private downloading experience without malicious pop-ups.",
+        "Yes, SnapDL Pro is completely safe and secure. We don’t store any user data, we never ask for your login credentials, and our tool provides a private downloading experience without malicious pop-ups.",
     },
   ];
 
@@ -47,7 +47,7 @@ const Faq = () => {
     <section className="w-full max-w-4xl mx-auto px-4 md:px-8 mb-20 md:mb-32">
       <SectionTitle
         title="Frequently Asked Questions"
-        subtitle="Have questions about downloading videos? You’re in the right place! Below are some of the most commonly asked questions to help you understand how FDN Pro works across all platforms."
+        subtitle="Have questions about downloading videos? You’re in the right place! Below are some of the most commonly asked questions to help you understand how SnapDL Pro works across all platforms."
         isTop={false}
       />
 
