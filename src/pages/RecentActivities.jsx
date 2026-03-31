@@ -63,7 +63,7 @@ const RecentActivities = () => {
           </button>
         </Link>
         {/* Header Section */}
-        <div className="flex flex-col md:flex-row justify-between items-center mb-10 gap-4">
+        <div className="flex flex-col  md:flex-row justify-between items-center mb-10 gap-8">
           <div>
             <h1 className="text-3xl md:text-2xl sm:text-lg font-bold">
               Recent Activities
